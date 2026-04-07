@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Student Analytics | Precision Performance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body>
+    <!-- Background Layer -->
+    <canvas id="canvas-particles"></canvas>
+
+    <div class="container animate-fadeIn">
+        <header class="glass-header">
+            <div class="badge-ai">Neural Intelligence v4.0</div>
+            <h1>Performance Tracker Pro</h1>
+            <p>Advanced Academic Prognostics & Behavioral Analytics</p>
+        </header>
+
+        <!-- Navigation System -->
+        <nav class="nav-tabs">
+            <button class="nav-btn active" data-target="dashboard-tab">Dashboard</button>
+            <button class="nav-btn" data-target="attendance-tab">Attendance Analytics</button>
+            <button class="nav-btn" data-target="predictor-tab">Grade Predictor</button>
+            <button class="nav-btn" data-target="roster-tab">Student Roster</button>
+        </nav>
+
+        <main id="main-content">
+            <!-- DASHBOARD TAB -->
+            <section id="dashboard-tab" class="tab-pane active">
+                <div class="stats-grid">
+                    <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-gold);">
+                        <h3>🏆 Top Performer</h3>
+                        <div>
+                            <p id="top-performer-val" class="stat-value">-</p>
+                            <span id="top-performer-name" class="text-secondary" style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">Awaiting Data</span>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-cyan);">
+                        <h3>📊 Class Average</h3>
+                        <div>
+                            <p id="avg-marks-val" class="stat-value">0.0</p>
+                            <span class="text-secondary" style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">System Aggregate</span>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card" style="border-left: 4px solid var(--accent-purple);">
+                        <h3>🗓️ Avg Attendance</h3>
+                        <div>
+                            <p id="avg-attendance-val" class="stat-value">0.0</p>
+                            <span class="text-secondary" style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">Participation</span>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card" style="border-left: 4px solid var(--text-primary);">
+                        <h3>👥 Total Roster</h3>
+                        <div>
+                            <p id="total-students-val" class="stat-value">0</p>
+                            <span class="text-secondary" style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">Active Records</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-single-row">
+                    <div class="glass-card ai-console">
+                        <h2>🤖 Neural Insights</h2>
+                        <div id="ai-insight-text" class="insight-text">
+                            Initializing neural engine... adding student records to begin inference.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ATTENDANCE ANALYTICS TAB -->
+            <section id="attendance-tab" class="tab-pane">
+                <div class="stats-single-row">
+                    <div class="glass-card">
+                        <h2>🎯 Performance Status</h2>
+                        <p class="text-secondary">Summary of student participation and academic distribution.</p>
+                        <div id="attendance-summary-text" class="insight-text" style="margin-top: 20px;">
+                            Analysis engine standby. Visit the Roster to update student data.
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <h2>⚠️ At-Risk Students</h2>
+                    <p class="text-secondary" style="margin-bottom: 20px;">Students with critical attendance (< 75%) requiring immediate intervention.</p>
+                    <div class="table-wrapper">
+                        <table id="at-risk-table">
+                            <thead>
+                                <tr>
+                                    <th>Roll NO.</th>
+                                    <th>Name</th>
+                                    <th>Attendance</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="at-risk-list">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PREDICTOR TAB -->
+            <section id="predictor-tab" class="tab-pane">
+                <div class="glass-card" style="margin-bottom: 24px;">
+                    <h2>🔮 Intelligent Grade Predictor</h2>
+                    <p class="text-secondary">Based on weighted inference: 70% Academic Marks + 30% Attendance Participation.</p>
+                    <div class="form-grid" style="margin-top: 24px;">
+                        <div class="input-container">
+                            <label>Select Student to Predict</label>
+                            <select id="predict-student-select">
+                                <option value="" disabled selected>Choose a student...</option>
+                            </select>
+                        </div>
+                        <div class="input-container" style="justify-content: flex-end;">
+                            <button id="run-prediction" class="btn-main btn-cyan">Run Inference</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prediction-results" style="display: none;">
+                    <div class="stats-single-row">
+                        <div class="glass-card">
+                            <h2>📊 Projected Performance Detail</h2>
+                            <div id="projected-score" class="prediction-score">--%</div>
+                            <div id="prediction-text" class="insight-text" style="text-align: center; margin-top: 20px;">
+                                Awaiting inference data...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROSTER TAB -->
+            <section id="roster-tab" class="tab-pane">
+                <div class="glass-card" style="margin-bottom: 24px;">
+                    <h2>➕ Record Entry</h2>
+                    <form id="add-student-form" class="form-grid">
+                        <div class="input-container">
+                            <label>Full Name</label>
+                            <input type="text" id="student-name" required placeholder="Ex: Alex Vance">
+                        </div>
+                        <div class="input-container">
+                            <label>Roll Number</label>
+                            <input type="text" id="student-roll" required placeholder="NX-001">
+                        </div>
+                        <div class="input-container">
+                            <label>Subject</label>
+                            <select id="student-subject" required>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Literature">Literature</option>
+                                <option value="Economics">Economics</option>
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <label>Marks (%)</label>
+                            <input type="number" id="student-marks" min="0" max="100" required placeholder="0-100">
+                        </div>
+                        <div class="input-container">
+                            <label>Attendance (%)</label>
+                            <input type="number" id="student-attendance" min="0" max="100" required placeholder="0-100">
+                        </div>
+                        <div class="input-container" style="justify-content: flex-end;">
+                            <button type="submit" class="btn-main btn-cyan">Append Record</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="glass-card roster-card">
+                    <div class="table-controls">
+                        <h2>📋 Active Roster</h2>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="roster-search" placeholder="Search by name, roll, or criteria...">
+                        </div>
+                    </div>
+
+                    <div class="export-group">
+                        <button id="export-csv" class="btn-main btn-magenta">Export CSV</button>
+                        <button id="export-json" class="btn-main btn-magenta">Export JSON</button>
+                    </div>
+
+                    <div class="bulk-actions" id="bulk-actions-area" style="display: none;">
+                        <span>Selected: <strong id="selected-count">0</strong></span>
+                        <button id="bulk-delete" class="btn-main btn-magenta" style="padding: 8px 16px; font-size: 0.8rem; border-color: var(--accent-danger); color: var(--accent-danger);">Delete Selected</button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="main-roster-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-col"><input type="checkbox" id="select-all"></th>
+                                    <th>Roll NO.</th>
+                                    <th>Student Name</th>
+                                    <th>Module</th>
+                                    <th>Marks</th>
+                                    <th>Attendance</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-list">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="system-footer">
+        <div class="footer-content">
+            <div class="status-item"><span>ENCRYPTED_LINK:</span> <span class="text-cyan">ACTIVE</span></div>
+            <div class="status-item"><span>CORE_TEMP:</span> <span class="text-cyan">OPTIMAL</span></div>
+            <div class="status-item"><span>DATABASE_SYNC:</span> <span class="text-cyan">LIVE</span></div>
+            <div class="status-item"><span>V4.07.22</span></div>
+        </div>
+    </footer>
+
+    <script src="app.js?v=4.0.1"></script>
+</body>
+</html>
