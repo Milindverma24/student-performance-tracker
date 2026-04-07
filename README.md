@@ -155,13 +155,13 @@ java -cp out Main
 ```
 StudentPerformanceTracker/
 │
-├── 📂 src/                        # All Java source code files
+├-─ 📂 src/                        # All Java source code files
 │   ├── Main.java                  # Entry point — launches the application
 │   ├── Student.java               # Student model (Roll No, Name, Marks)
 │   ├── StudentManager.java        # Core logic — add, update, delete, analyze
 │   └── FileHandler.java           # Handles reading/writing data to file
 │
-├── 📂 data/
+├── 📂 web-trcker/
 │   └── students.dat               # Auto-generated file storing student records
 │
 ├── Screenshot.png                 # App screenshot for README
@@ -169,7 +169,6 @@ StudentPerformanceTracker/
 └── LICENSE                        # MIT License
 ```
 
-> ⚠️ _Update this structure to exactly match your actual files if they differ._
 
 ---
 
@@ -220,6 +219,9 @@ See the [LICENSE](LICENSE) file for full details.
 ---
 
 ## 👤 Author
+
+**Your Name**  
+GitHub: [@yourusername](https://github.com/yourusername)
 
 <div align="center">
 
